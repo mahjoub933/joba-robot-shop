@@ -1,0 +1,31 @@
+<div class="product" >
+    <div class="product-details">
+     <!--- <img src="{{'/assets/assets/images/robot-parts/'+product.imageName}}" alt="{{product.name}}" />
+      <img [src]="'/assets/assets/images/robot-parts/'+product.imageName" [alt]="product.name" />-->
+      <img [src]="getImageUrl(product)" [alt]="product.name" />
+      <div class="product-info">
+        <div class="name red">{{product.name}}</div>
+        <div class="description">{{product.description}}</div>
+        <div class="category">Part Type:{{product.category}} </div>
+      </div>
+    </div>
+    <div class="price">
+      <!--<div [class.stickthrought]="product.discount  > 0">
+        {{product?.price | currency : 'GBP'}}--->
+        <!------- when use NgClass directive -->
+      <!--- <div [ngClass]="{stickthrought: product.discount > 0}">
+          {{product?.price | currency : 'GBP'}} -->
+
+          <!---- Use CSS with function in catalog.ngComponent.ts the func is getDiscounted(product)-->
+          <div class="bold"
+          [ngStyle]="{'color' : product.discount>0 ? 'red': '' }"
+          [ngClass]="getDiscounted(product)">
+            {{product.price | currency : 'GBP'}}
+          <!---- USE NgIf -->
+      <!--<div *ngIf="product.discount===0">{{product?.price | currency : 'GBP'}}--></div>
+      <div *ngIf="product.discount > 0" class="discount">
+        {{(product.price * (1-product.discount)) | currency : 'GBP' }}
+      </div>
+      <button class="cta" (click)="buyButtonClick(product)">Buy</button>
+    </div>
+  </div>
